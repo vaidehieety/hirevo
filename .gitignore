@@ -1,0 +1,20 @@
+# Build output: Maven recreates it on every build
+target/
+
+# Editor settings: personal to your machine
+.idea/
+*.iml
+.vscode/
+
+# macOS: Finder's hidden folder-settings files (added because you're on a Mac)
+.DS_Store
+
+# Logs
+*.log
+
+# SECRETS: never commit these
+.env
+application-local.yml
+
+# Files uploaded while testing locally (used from Chapter 19)
+uploads/
