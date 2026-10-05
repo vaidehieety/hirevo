@@ -1,0 +1,24 @@
+<!-- src/main/resources/static/index.html
+     A tiny welcome page. Spring Boot serves any static/index.html at "/" automatically. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hirevo API</title>
+  <style>
+    /* simple, readable styling */
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 48px auto; padding: 0 16px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <h1>Hirevo API</h1>
+  <p>A job platform for freshers: match scores, fake-job alerts and anti-ghosting.
+     <strong>Version 0.1: Jobs API.</strong></p>
+  <ul>
+    <li><a href="/actuator/health">Health check</a></li>
+    <li><a href="/api/v1/jobs">Open jobs (JSON)</a></li>
+    <li><a href="https://github.com/vaidehieety/hirevo">Source code on GitHub</a></li>
+  </ul>
+</body>
+</html>
