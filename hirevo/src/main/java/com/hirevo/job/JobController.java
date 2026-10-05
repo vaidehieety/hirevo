@@ -1,6 +1,5 @@
 // src/main/java/com/hirevo/job/JobController.java
 package com.hirevo.job;
-
 import java.net.URI;
 import java.util.List;
 
@@ -19,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.hirevo.job.dto.CreateJobRequest;
 import com.hirevo.job.dto.JobResponse;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController                    // methods return data as JSON
@@ -43,7 +43,7 @@ public class JobController {
 
     // POST /api/v1/jobs → 201 Created + Location header
     @PostMapping
-    public ResponseEntity<JobResponse> create(@RequestBody CreateJobRequest req) {
+    public ResponseEntity<JobResponse> create(@Valid @RequestBody CreateJobRequest req) {
         JobResponse created = jobService.create(req);
         // the new job's address, e.g. http://localhost:8080/api/v1/jobs/1
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -53,7 +53,7 @@ public class JobController {
 
     // PUT /api/v1/jobs/42 → update the job's details
     @PutMapping("/{id}")
-    public JobResponse update(@PathVariable Long id, @RequestBody CreateJobRequest req) {
+    public JobResponse update(@Valid @PathVariable Long id, @RequestBody CreateJobRequest req) {
         return jobService.update(id, req);
     }
 
