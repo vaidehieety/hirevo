@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- hirevo/pom.xml — Maven's "recipe card" for Hirevo (Java Backend Notes, Ch 4, p. 48–49).
+     It says: what the project is called, which Java to use, which libraries it needs,
+     and how to build it into one runnable JAR file. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- POM format version: always 4.0.0 -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- PARENT: inherit Spring Boot's defaults. The parent fixes compatible versions for
+         hundreds of libraries, so the dependencies below don't need version numbers.
+         3.5.16 = the final free (open-source) release of Spring Boot 3.5, which the notes use.
+         We upgrade to Spring Boot 4 in v1.1 (Chapter 29). -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.16</version>
+        <relativePath/> <!-- download the parent from Maven Central, not from a local folder -->
+    </parent>
+
+    <!-- COORDINATES: the unique "name" of this project -->
+    <groupId>com.hirevo</groupId>                 <!-- who owns it (a reversed domain style name) -->
+    <artifactId>hirevo</artifactId>                <!-- the project's name -->
+    <version>0.0.1-SNAPSHOT</version>              <!-- SNAPSHOT = still in development; becomes 0.1.0 at Release v0.1 -->
+    <name>hirevo</name>
+    <description>Hirevo: a job platform for freshers</description>
+
+    <properties>
+        <!-- Compile for Java 21 (the version installed on your Mac) -->
+        <java.version>21</java.version>
+    </properties>
+
+    <dependencies>
+        <!-- Spring Web: Spring MVC + embedded Tomcat server + JSON support.
+             Everything needed to build a REST API (Chapter 7). -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <!-- no <version>: the parent decides it -->
+        </dependency>
+
+        <!-- Validation: checks incoming data with annotations like @NotBlank (Chapter 9) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!-- Actuator: ready-made health and info endpoints, e.g. /actuator/health (Chapter 6) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- DevTools: restarts the app automatically when your code changes.
+             scope=runtime + optional → only used while developing, never shipped to production -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Lombok: writes boring code for you (getters, constructors, loggers) at compile time
+             (Chapter 8). optional → not packed into the final JAR -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Testing tools: JUnit 5, Mockito, AssertJ, Spring Test.
+             scope=test → only available to tests (Chapter 22) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- The Java compiler. We tell it to run Lombok while compiling,
+                 so Lombok can generate its code. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <!-- lombok.version comes from the Spring Boot parent -->
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <!-- Spring Boot's plugin: builds the runnable "fat" JAR and adds the
+                 ./mvnw spring-boot:run command. Lombok is left out of the JAR because
+                 it's only needed while compiling. -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
