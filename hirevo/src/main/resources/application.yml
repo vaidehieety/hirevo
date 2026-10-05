@@ -1,0 +1,22 @@
+# src/main/resources/application.yml — settings shared by ALL environments
+spring:
+  application:
+    name: hirevo              # the app's name (shows in logs and monitoring)
+  profiles:
+    active: dev               # use the "dev" profile unless told otherwise
+
+server:
+  port: 8080                  # the door (port) the web server listens on
+
+hirevo:                       # OUR OWN settings, under our own prefix
+  ghosting:
+    max-days: 14              # auto-close applications after this many days
+  ai:
+    match-threshold: 0.70     # used by AI matching in v0.4
+    max-roadmap-steps: 3      # the skill-gap roadmap has 3 steps
+
+management:                   # Actuator settings
+  endpoints:
+    web:
+      exposure:
+        include: health,info  # only these two endpoints are reachable over HTTP
