@@ -1,4 +1,3 @@
-debug: true                  # TEMPORARY: print the auto-configuration report
 # src/main/resources/application.yml — settings shared by ALL environments
 spring:
   application:
