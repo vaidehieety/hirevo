@@ -6,7 +6,7 @@ spring:
     active: dev               # use the "dev" profile unless told otherwise
 
 server:
-  port: 8080                  # the door (port) the web server listens on
+  port: ${PORT:8080}                  # the door (port) the web server listens on
 
 hirevo:                       # OUR OWN settings, under our own prefix
   ghosting:

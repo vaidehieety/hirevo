@@ -23,7 +23,7 @@
     <!-- COORDINATES: the unique "name" of this project -->
     <groupId>com.hirevo</groupId>                 <!-- who owns it (a reversed domain style name) -->
     <artifactId>hirevo</artifactId>                <!-- the project's name -->
-    <version>0.0.1-SNAPSHOT</version>              <!-- SNAPSHOT = still in development; becomes 0.1.0 at Release v0.1 -->
+    <version>0.1.0</version>              <!-- SNAPSHOT = still in development; becomes 0.1.0 at Release v0.1 -->
     <name>hirevo</name>
     <description>Hirevo: a job platform for freshers</description>
 

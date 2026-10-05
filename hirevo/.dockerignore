@@ -1,0 +1,7 @@
+# Files Docker must NOT copy into the build
+target/
+.git/
+.idea/
+*.iml
+.env
+uploads/
