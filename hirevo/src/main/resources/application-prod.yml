@@ -1,0 +1,6 @@
+# src/main/resources/application-prod.yml — ONLY used when the "prod" profile is active
+server:
+  shutdown: graceful          # finish requests in progress before stopping
+logging:
+  level:
+    root: INFO                # less noise on the live server

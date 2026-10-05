@@ -18,7 +18,30 @@ recruiters simply stop responding.
   auto-close, and the company's public Response Score drops
 
 ## Status
-🚧 Foundations: planning and dev setup. First release (v0.1, Jobs API) is next.
+✅ **v0.1 — Jobs API:** create, search, update and close jobs, with request
+validation and clean error responses. Data lives in memory for now
+(MySQL arrives in v0.2).
+
+🌍 **Live demo:** coming soon
+
+## Run it locally
+Requires Java 21.
+
+```bash
+cd hirevo
+./mvnw spring-boot:run
+```
+
+Then open http://localhost:8080/actuator/health → `{"status":"UP"}`
+
+## API (v0.1)
+| Method | Path | Purpose |
+|---|---|---|
+| GET | `/api/v1/jobs?skill=&location=` | Search open jobs |
+| GET | `/api/v1/jobs/{id}` | Job details |
+| POST | `/api/v1/jobs` | Post a job |
+| PUT | `/api/v1/jobs/{id}` | Update a job |
+| PATCH | `/api/v1/jobs/{id}/close` | Close a job |
 
 ## Tech stack (planned)
 Java 21 · Spring Boot 3.5 · MySQL · MongoDB Atlas · Spring AI + Gemini ·

@@ -1,0 +1,4 @@
+# src/main/resources/application-dev.yml — ONLY used when the "dev" profile is active
+logging:
+  level:
+    com.hirevo: DEBUG         # show our own detailed debug messages while developing
