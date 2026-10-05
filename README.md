@@ -22,7 +22,8 @@ recruiters simply stop responding.
 validation and clean error responses. Data lives in memory for now
 (MySQL arrives in v0.2).
 
-🌍 **Live demo:** coming soon
+🌍 **Live demo:** https://hirevo-api.onrender.com/actuator/health
+(free hosting: the first request after a quiet spell takes ~1 minute to wake up)
 
 ## Run it locally
 Requires Java 21.
